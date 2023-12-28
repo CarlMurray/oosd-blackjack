@@ -55,7 +55,6 @@ public class Card
 
     public enum CardRank
     {
-        One = 1,
         Two = 2,
         Three = 3,
         Four = 4,
