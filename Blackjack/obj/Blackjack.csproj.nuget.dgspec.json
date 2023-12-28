@@ -1,30 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/Blackjack.csproj": {}
+    "C:\\Users\\carlj\\Desktop\\oosd-blackjack\\Blackjack\\Blackjack.csproj": {}
   },
   "projects": {
-    "/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/Blackjack.csproj": {
+    "C:\\Users\\carlj\\Desktop\\oosd-blackjack\\Blackjack\\Blackjack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/Blackjack.csproj",
+        "projectUniqueName": "C:\\Users\\carlj\\Desktop\\oosd-blackjack\\Blackjack\\Blackjack.csproj",
         "projectName": "Blackjack",
-        "projectPath": "/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/Blackjack.csproj",
-        "packagesPath": "/home/carl/.nuget/packages/",
-        "outputPath": "/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/obj/",
+        "projectPath": "C:\\Users\\carlj\\Desktop\\oosd-blackjack\\Blackjack\\Blackjack.csproj",
+        "packagesPath": "C:\\Users\\carlj\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\carlj\\Desktop\\oosd-blackjack\\Blackjack\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/carl/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\carlj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -35,8 +37,8 @@
         }
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "imports": [
             "net461",
             "net462",
@@ -53,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

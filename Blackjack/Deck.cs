@@ -5,7 +5,7 @@ public class Deck
     private const int NUMBER_OF_SUITS = 4;
     private const int NUMBER_OF_CARDS = 52;
     private const int MIN_CARD_VALUE = 2;
-    private const int MAX_CARD_VALUE = 2;
+    private const int MAX_CARD_VALUE = 14;
     
     
     // GETS NUMBER OF CARDS IN THE CURRENT DECK
@@ -46,5 +46,10 @@ public class Deck
                 index++;
             }
         }
+    }
+
+    public void Shuffle()
+    {
+        Random.Shared.Shuffle(CardsInDeck);
     }
 }
