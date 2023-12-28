@@ -8,7 +8,7 @@ namespace Blackjack
 {
     internal class Game
     {
-        Player[] Players = new Player[2];
+        public Player[] Players = new Player[2];
 
         public Game(Player[] players)
         {
@@ -26,7 +26,8 @@ namespace Blackjack
         public void Deal(Deck deck, Player player)
         {
             // Get last item in deck array, copy to player hand, remove from deck.
-            player.AddCardToHand(deck.CardsInDeck.Last());
+            Card card = deck.CardsInDeck.Last();
+            player.AddCardToHand(card);
             deck.RemoveTopCard();
         }
     }

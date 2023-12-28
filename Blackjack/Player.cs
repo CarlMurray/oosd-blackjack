@@ -9,7 +9,7 @@ namespace Blackjack
     internal class Player
     {
         public string Name { get; set; }
-        public List<Card> Hand { get; set; }
+        public List<Card> Hand = [];
         public int Score { get; set; }
 
         public Player(string name, int score = 0)
