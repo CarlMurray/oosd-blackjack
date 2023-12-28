@@ -1,0 +1,15 @@
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/bin/Debug/net7.0/Blackjack
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/bin/Debug/net7.0/Blackjack.deps.json
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/bin/Debug/net7.0/Blackjack.runtimeconfig.json
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/bin/Debug/net7.0/Blackjack.dll
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/bin/Debug/net7.0/Blackjack.pdb
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/obj/Debug/net7.0/Blackjack.csproj.AssemblyReference.cache
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/obj/Debug/net7.0/Blackjack.GeneratedMSBuildEditorConfig.editorconfig
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/obj/Debug/net7.0/Blackjack.AssemblyInfoInputs.cache
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/obj/Debug/net7.0/Blackjack.AssemblyInfo.cs
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/obj/Debug/net7.0/Blackjack.csproj.CoreCompileInputs.cache
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/obj/Debug/net7.0/Blackjack.dll
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/obj/Debug/net7.0/refint/Blackjack.dll
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/obj/Debug/net7.0/Blackjack.pdb
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/obj/Debug/net7.0/Blackjack.genruntimeconfig.cache
+/home/carl/Documents/OOSD/blackjack/Blackjack/Blackjack/obj/Debug/net7.0/ref/Blackjack.dll
