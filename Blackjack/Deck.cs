@@ -46,10 +46,19 @@ public class Deck
                 index++;
             }
         }
+        this.Shuffle();
     }
 
     public void Shuffle()
     {
         Random.Shared.Shuffle(CardsInDeck);
+    }
+
+    // Description: Removes top card from deck. Used when dealing cards in Game.
+    public void RemoveTopCard()
+    {
+        Card topCard = CardsInDeck.Last();
+        // CREATE NEW ARRAY WITHOUT topCard
+        CardsInDeck = CardsInDeck.Where(x => x != topCard).ToArray();  
     }
 }

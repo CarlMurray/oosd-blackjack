@@ -1,22 +1,34 @@
 ﻿using Blackjack;
 
-Card card = new Card(3, 12);
-
-
+Player user = new Player("Carl");
+Player dealer = new Player("Dealer");
+Game game = new Game([user, dealer]);
 Deck deck = new Deck();
 
-for (int i = 0; i < 52; i++)
+// Deal two cards to each player in order
+for (int i = 0; i < 2; i++)
 {
-    Console.WriteLine(deck.CardsInDeck[i]);
-
+    game.Deal(deck, user);
+    game.Deal(deck, dealer);
 }
 
-Console.WriteLine(deck.NumCardsInDeck);
+Console.WriteLine(user.Hand[0]);
+Console.WriteLine(user.Hand[1]);
 
-deck.Shuffle();
 
-for (int i = 0; i < 52; i++)
-{
-    Console.WriteLine(deck.CardsInDeck[i]);
+//for (int i = 0; i < 52; i++)
+//{
+//    Console.WriteLine(deck.CardsInDeck[i]);
 
-}
+//}
+
+//Console.WriteLine(deck.NumCardsInDeck);
+
+//deck.Shuffle();
+
+//for (int i = 0; i < 52; i++)
+//{
+//    Console.WriteLine(deck.CardsInDeck[i]);
+
+//}
+
