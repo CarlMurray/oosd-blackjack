@@ -2,10 +2,10 @@ namespace Blackjack;
 
 public class Deck
 {
-    private const int NUMBER_OF_SUITS = 4;
-    private const int NUMBER_OF_CARDS = 52;
-    private const int MIN_CARD_VALUE = 2;
-    private const int MAX_CARD_VALUE = 14;
+    private const int NUMBER_OF_SUITS = 4; // Clubs, Diamonds, Hearts, Spades
+    private const int NUMBER_OF_CARDS = 52; // Standard deck
+    private const int MIN_CARD_VALUE = 2; // CardRank enum starts at 2 (Two)
+    private const int MAX_CARD_VALUE = 14; // CardRank enum ends at 14 (Ace)
     
     
     // GETS NUMBER OF CARDS IN THE CURRENT DECK
