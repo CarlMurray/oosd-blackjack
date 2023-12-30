@@ -1,112 +1,110 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Blackjack;
 
-namespace Blackjack
+internal class Game
 {
-    internal class Game
+    private const int MAX_SCORE = 21;
+
+    public Player[] Players = new Player[2];
+
+    public Game(Player[] players)
     {
-        const int MAX_SCORE = 21;
+        Players = players;
+    }
 
-        public Player[] Players = new Player[2];
+    /*
+     * Description:
+     *      Gets last card in deck, copies to player hand, removes from deck.
+     *
+     * Parameters:
+     *      Deck deck: The deck to deal from.
+     *      Player player: The player to deal card to.
+     */
+    public void Deal(Deck deck, Player player)
+    {
+        // Get last item in deck array, copy to player hand, remove from deck.
+        var card = deck.CardsInDeck.Last();
+        player.AddCardToHand(card);
+        deck.RemoveTopCard();
+        Console.WriteLine($"{card} dealt to {player.Name}");
+    }
 
-        public Game(Player[] players)
+    public bool EvaluateScores(bool bothStand)
+    {
+        var isDraw = false;
+        var playerWins = false;
+        var dealerWins = false;
+
+        if (bothStand)
         {
-            Players = players;
-        }
-
-        /*
-         * Description:
-         *      Gets last card in deck, copies to player hand, removes from deck.
-         *      
-         * Parameters:
-         *      Deck deck: The deck to deal from.
-         *      Player player: The player to deal card to.
-         */
-        public void Deal(Deck deck, Player player)
-        {
-            // Get last item in deck array, copy to player hand, remove from deck.
-            Card card = deck.CardsInDeck.Last();
-            player.AddCardToHand(card);
-            deck.RemoveTopCard();
-            Console.WriteLine($"{card} dealt to {player.Name}");
-        }
-
-        public bool EvaluateScores(bool bothStand)
-        {
-
-            bool isDraw = false;
-            bool playerWins = false;
-            bool dealerWins = false;
-
-            if (bothStand)
+            if (Players[0].Score > Players[1].Score)
             {
-                if (Players[0].Score > Players[1].Score)
-                {
-                    Console.WriteLine($"{Players[0].Name} wins.");
-                    playerWins = true;
-                    return playerWins;
-                }
-                else if (Players[0].Score < Players[1].Score)
-                {
-                    Console.WriteLine($"{Players[1].Name} wins.");
-                    dealerWins = true;
-                    return dealerWins;
-                }
-                else
-                {
-                    Console.WriteLine("Game is a draw");
-                    isDraw = true;
-                    return isDraw;
-                }
-            }
-
-            // If player and dealer have 21
-            if ((Players[0].Score == Players[1].Score) && Players[0].Score == MAX_SCORE)
-            {
-                Console.WriteLine("Game is a draw");
-                isDraw = true;
-                return isDraw;
-            }
-            // If player has 21 and dealer does not
-            else if (Players[0].Score == MAX_SCORE && Players[0].Score > Players[1].Score)
-            {
-                Console.WriteLine($"{Players[0].Name} wins.");
+                Console.WriteLine($"{Players[0].Name} wins. (High score)");
                 playerWins = true;
                 return playerWins;
             }
-            // If dealer has 21 and player does not
-            else if (Players[1].Score == MAX_SCORE && Players[1].Score > Players[0].Score)
-            {
-                Console.WriteLine($"{Players[1].Name} wins.");
-                dealerWins = true;
-                return dealerWins;
-            }
-            // If player busts and dealer doesn't
-            else if (Players[0].Score > MAX_SCORE && Players[1].Score <= MAX_SCORE)
-            {
-                Console.WriteLine($"{Players[1].Name} wins.");
-                dealerWins = true;
-                return dealerWins;
-            }
-            // If dealer busts and player doesn't
-            else if (Players[1].Score > MAX_SCORE && Players[0].Score >= MAX_SCORE)
-            {
-                Console.WriteLine($"{Players[0].Name} wins.");
-                playerWins = true;
-                return playerWins;
-            }
-            // If both player and dealer bust, draw
-            else if (Players[0].Score > MAX_SCORE && Players[1].Score > MAX_SCORE)
-            {
-                Console.WriteLine("Game is a draw");
-                isDraw = true;
-                return isDraw;
-            }
-            return false;
 
+            if (Players[0].Score < Players[1].Score)
+            {
+                Console.WriteLine($"{Players[1].Name} wins. (High score)");
+                dealerWins = true;
+                return dealerWins;
+            }
+
+            Console.WriteLine("Game is a draw (Equal score)");
+
+
+            isDraw = true;
+            return isDraw;
         }
+
+        // If player and dealer have 21
+        if (Players[0].Score == Players[1].Score && Players[0].Score == MAX_SCORE)
+        {
+            Console.WriteLine("Game is a draw (Both players scored 21)");
+            isDraw = true;
+            return isDraw;
+        }
+        // If player has 21 and dealer does not
+
+        if (Players[0].Score == MAX_SCORE && Players[0].Score > Players[1].Score)
+        {
+            Console.WriteLine($"{Players[0].Name} wins. (Scored 21)");
+            playerWins = true;
+            return playerWins;
+        }
+        // If dealer has 21 and player does not
+
+        if (Players[1].Score == MAX_SCORE && Players[1].Score > Players[0].Score)
+        {
+            Console.WriteLine($"{Players[1].Name} wins. (Scored 21)");
+            dealerWins = true;
+            return dealerWins;
+        }
+        // If player busts and dealer doesn't
+
+        if (Players[0].Score > MAX_SCORE && Players[1].Score <= MAX_SCORE)
+        {
+            Console.WriteLine($"{Players[1].Name} wins. ({Players[0]} bust)");
+            dealerWins = true;
+            return dealerWins;
+        }
+        // If dealer busts and player doesn't
+
+        if (Players[1].Score > MAX_SCORE && Players[0].Score <= MAX_SCORE)
+        {
+            Console.WriteLine($"{Players[0].Name} wins. ({Players[1]} bust)");
+            playerWins = true;
+            return playerWins;
+        }
+        // If both player and dealer bust, draw
+
+        if (Players[0].Score > MAX_SCORE && Players[1].Score > MAX_SCORE)
+        {
+            Console.WriteLine("Game is a draw (Both players bust)");
+            isDraw = true;
+            return isDraw;
+        }
+
+        return false;
     }
 }

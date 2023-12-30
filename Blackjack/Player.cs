@@ -29,20 +29,27 @@ namespace Blackjack
         {
             while (true)
             {
-                Console.WriteLine("Do you want to hit or stand? (h/s): ");
+                Console.Write("Do you want to hit or stand? (h/s): ");
                 string choice = Console.ReadLine();
                 if (choice.Equals("h"))
                 {
                     Console.WriteLine($"{Name} hits.");
+                    Console.WriteLine();
                     return true;
                 }
                 else if (choice.Equals("s"))
                 {
                     Console.WriteLine($"{Name} stands.");
+                    Console.WriteLine();
                     return false;
                 }
 
             }
+        }
+
+        public virtual void PrintPlayerHand()
+        {
+            Console.WriteLine($"{Name}'s hand:\n\t{String.Join("\n\t", Hand)}\n\tScore: {Score}");
         }
     }
 

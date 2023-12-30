@@ -42,7 +42,7 @@ public class Card
     
     public override string ToString()
     {
-        return $"Card: {Rank.ToString()} of {Suit.ToString()} worth {CardValue} points.";
+        return $"{Rank.ToString()} of {Suit.ToString()} worth {CardValue} points";
     }
     
     public enum CardSuit
