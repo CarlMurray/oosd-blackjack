@@ -8,43 +8,37 @@ public class Card
         Suit = (CardSuit)suit;
         Rank = (CardRank)rank;
 
-        // SET IsFaceCard
-        if ((int)Rank >= 10 && (int)Rank <= 13)
+        // Set card value
+        if (rank >= 11 && rank <= 13)
         {
             IsFaceCard = true;
-        }
-        else
-        {
-            IsFaceCard = false;
-        }
-
-        // SET CardValue
-        if (IsFaceCard)
-        {
             CardValue = 10;
         }
-        else if (IsAce)
+        else if (rank == 14)
         {
+            IsAce = true;
             CardValue = 11;
         }
         else
         {
-            CardValue = (int)Rank;
+            CardValue = rank;
         }
     }
-    
+
     // PROPERTIES
     public CardSuit Suit { get; set; }
     public CardRank Rank { get; set; }
-    public bool IsAce { get; set; }
+
+
+    public bool IsAce { get; set; } = false;
     public int CardValue { get; set; }
-    public bool IsFaceCard { get; set; }
-    
+    public bool IsFaceCard { get; set; } = false;
+
     public override string ToString()
     {
         return $"{Rank.ToString()} of {Suit.ToString()} worth {CardValue} points";
     }
-    
+
     public enum CardSuit
     {
         Clubs = 1,

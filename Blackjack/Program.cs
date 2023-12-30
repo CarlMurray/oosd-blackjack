@@ -4,8 +4,6 @@
  * - Tidy up output formatting
  */
 
-using System.Net.Mime;
-using System.Runtime.CompilerServices;
 using Blackjack;
 
 static void Main()

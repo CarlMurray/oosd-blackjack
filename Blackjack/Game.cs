@@ -23,6 +23,15 @@ internal class Game
     {
         // Get last item in deck array, copy to player hand, remove from deck.
         var card = deck.CardsInDeck.Last();
+
+        // Check if Ace should be 11 or 1
+        if (card.IsAce)
+        {
+            if ((player.Score + card.CardValue) > MAX_SCORE)
+            {
+                card.CardValue = 1;
+            }
+        }
         player.AddCardToHand(card);
         deck.RemoveTopCard();
         Console.WriteLine($"{card} dealt to {player.Name}");
@@ -30,9 +39,9 @@ internal class Game
 
     public bool EvaluateScores(bool bothStand)
     {
-        var isDraw = false;
-        var playerWins = false;
-        var dealerWins = false;
+        bool isDraw = false;
+        bool playerWins = false;
+        bool dealerWins = false;
 
         if (bothStand)
         {
@@ -84,7 +93,7 @@ internal class Game
 
         if (Players[0].Score > MAX_SCORE && Players[1].Score <= MAX_SCORE)
         {
-            Console.WriteLine($"{Players[1].Name} wins. ({Players[0]} bust)");
+            Console.WriteLine($"{Players[1].Name} wins. ({Players[0].Name} bust)");
             dealerWins = true;
             return dealerWins;
         }
@@ -92,7 +101,7 @@ internal class Game
 
         if (Players[1].Score > MAX_SCORE && Players[0].Score <= MAX_SCORE)
         {
-            Console.WriteLine($"{Players[0].Name} wins. ({Players[1]} bust)");
+            Console.WriteLine($"{Players[0].Name} wins. ({Players[1].Name} bust)");
             playerWins = true;
             return playerWins;
         }
