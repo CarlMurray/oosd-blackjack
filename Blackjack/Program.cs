@@ -27,17 +27,16 @@
 
 using Blackjack;
 
-static void Main()
+do
 {
     (Player user, Dealer dealer, Deck deck, Game game) = InitialiseGame();
-
     DealInitialHands(game, deck);
 
     // Check if either player is bust or 21
     if (game.EvaluateScores())
     {
         Console.WriteLine("Starting new game...");
-        Main();
+        continue;
     }
 
     Console.WriteLine("----- PLAYER HANDS -----");
@@ -49,55 +48,51 @@ static void Main()
     }
     Console.WriteLine();
 
-    // Variable to exclude player from play if stand
+    // Variable to end player's turn if stands
     bool playerStands = false;
     bool dealerStands = false;
-    bool gameHasWinner = false;
 
+    // Play out player's turn until they stand
     playerStands = playOutPlayerTurn(game, deck, user);
 
+    // If player doesn't 21 or bust, dealer's turn
     if (!game.EvaluateScores())
     {
         dealerStands = playOutPlayerTurn(game, deck, dealer);
     }
 
-
-    // If both dealer and player stand
+    // If both dealer and player stand (neither player 21 nor bust)
     if (playerStands == true && dealerStands == true)
     {
-        foreach (var player in game.Players)
+        foreach (Player player in game.Players)
         {
             player.PrintPlayerHand();
         }
         // Check if there's a winner with true argument to check endgame scores
         game.EvaluateScores(true);
 
-        // Restart game
-        PlayAgainPrompt();
     }
 
-    PlayAgainPrompt();
-}
-
-static void PlayAgainPrompt()
+} while (PlayAgainPrompt());
+static bool PlayAgainPrompt()
 {
     Console.WriteLine();
     Console.BackgroundColor = ConsoleColor.DarkRed;
-    Console.WriteLine("--------- END OF GAME ----------");
+    Console.Write("--------- END OF GAME ----------");
     Console.BackgroundColor = ConsoleColor.Black;
 
     Console.WriteLine();
-    Console.Write("Do you want to play again? (y/n): ");
     string choice;
     do
     {
+        Console.Write("Do you want to play again? (y/n): ");
         choice = Console.ReadLine();
     } while (!new[] { "y", "n" }.Contains(choice.ToLower()));
 
     switch (choice)
     {
         case "y":
-            Main();
+            return true;
             break;
         case "n":
             Console.WriteLine("Game over.");
@@ -105,6 +100,7 @@ static void PlayAgainPrompt()
             break;
     }
 
+    return false;
 }
 
 static (Player, Dealer, Deck, Game) InitialiseGame()
@@ -113,13 +109,12 @@ static (Player, Dealer, Deck, Game) InitialiseGame()
     Console.Clear();
 
     // Initialise players, game, deck
-    Player user = new Player("Carl");
-    Dealer dealer = new Dealer();
-    Deck deck = new Deck();
-    Game game = new Game([user, dealer]);
+    Player user = new("Carl");
+    Dealer dealer = new();
+    Deck deck = new();
+    Game game = new([user, dealer]);
     return (user, dealer, deck, game);
 }
-
 
 static void DealInitialHands(Game game, Deck deck)
 {
@@ -136,7 +131,6 @@ static void DealInitialHands(Game game, Deck deck)
 
     Console.WriteLine();
 }
-
 
 static bool playOutPlayerTurn(Game game, Deck deck, Player player, bool playerStands = false)
 {
@@ -164,5 +158,3 @@ static bool playOutPlayerTurn(Game game, Deck deck, Player player, bool playerSt
     }
     return playerStands;
 }
-
-Main();

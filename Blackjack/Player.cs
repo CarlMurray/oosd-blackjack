@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Blackjack
+﻿namespace Blackjack
 {
     internal class Player
     {
@@ -19,7 +11,7 @@ namespace Blackjack
             Name = name;
             Score = 0;
         }
-
+            
         public void AddCardToHand(Card card)
         {
 
@@ -50,7 +42,7 @@ namespace Blackjack
                 string choice = Console.ReadLine();
                 if (choice.ToLower().Equals("h"))
                 {
-                Console.Clear();
+                    Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine($"{Name} hits.");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -73,7 +65,7 @@ namespace Blackjack
 
         public virtual void PrintPlayerHand(bool isInitialRound = false)
         {
-            if (isInitialRound && this.GetType() == typeof(Dealer))
+            if (isInitialRound && GetType() == typeof(Dealer))
             {
                 Console.WriteLine($"----- {Name}'s HAND -----");
                 Console.WriteLine($"{Name}'s hand:\n\tHole card\n\t{Hand[1]}\n\tScore: {Hand[1].CardValue} + ?");
@@ -82,7 +74,7 @@ namespace Blackjack
             else
             {
                 Console.WriteLine($"----- {Name}'s HAND -----");
-                Console.WriteLine($"{Name}'s hand:\n\t{String.Join("\n\t", Hand)}\n\tScore: {Score}");
+                Console.WriteLine($"{Name}'s hand:\n\t{string.Join("\n\t", Hand)}\n\tScore: {Score}");
                 Console.WriteLine();
             }
         }
@@ -95,7 +87,7 @@ namespace Blackjack
             Score = 0;
         }
 
-        override public bool HitOrStand()
+        public override bool HitOrStand()
         {
 
             if (Score < 17)

@@ -9,7 +9,7 @@ public class Card
         Rank = (CardRank)rank;
 
         // Set card value
-        if (rank >= 11 && rank <= 13)
+        if (rank is >= 11 and <= 13)
         {
             IsFaceCard = true;
             CardValue = 10;
@@ -36,7 +36,7 @@ public class Card
 
     public override string ToString()
     {
-        return $"{Rank.ToString()} of {Suit.ToString()} worth {CardValue} points";
+        return $"{Rank} of {Suit} worth {CardValue} points";
     }
 
     public enum CardSuit

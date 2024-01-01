@@ -22,7 +22,7 @@ internal class Game
     public void Deal(Deck deck, Player player)
     {
         // Get last item in deck array, copy to player hand, remove from deck.
-        var card = deck.CardsInDeck.Last();
+        Card card = deck.CardsInDeck.Last();
 
         player.AddCardToHand(card);
         deck.RemoveTopCard();
@@ -43,7 +43,6 @@ internal class Game
         bool isDraw = false;
         bool playerWins = false;
         bool dealerWins = false;
-
         if (bothStand)
         {
             if (Players[0].Score > Players[1].Score)

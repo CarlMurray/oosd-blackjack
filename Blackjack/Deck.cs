@@ -6,8 +6,8 @@ public class Deck
     private const int NUMBER_OF_CARDS = 52; // Standard deck
     private const int MIN_CARD_VALUE = 2; // CardRank enum starts at 2 (Two)
     private const int MAX_CARD_VALUE = 14; // CardRank enum ends at 14 (Ace)
-    
-    
+
+
     // GETS NUMBER OF CARDS IN THE CURRENT DECK
     public int NumCardsInDeck
     {
@@ -41,12 +41,12 @@ public class Deck
             for (int i = MIN_CARD_VALUE; i <= MAX_CARD_VALUE; i++)
             {
                 // CREATE AND ADD CARD TO DECK
-                Card card = new Card(j, i);
+                Card card = new(j, i);
                 CardsInDeck[index] = card;
                 index++;
             }
         }
-        this.Shuffle();
+        Shuffle();
     }
 
     public void Shuffle()
@@ -59,6 +59,6 @@ public class Deck
     {
         Card topCard = CardsInDeck.Last();
         // CREATE NEW ARRAY WITHOUT topCard
-        CardsInDeck = CardsInDeck.Where(x => x != topCard).ToArray();  
+        CardsInDeck = CardsInDeck.Where(x => x != topCard).ToArray();
     }
 }
