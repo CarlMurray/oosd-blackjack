@@ -24,20 +24,21 @@ internal class Game
         // Get last item in deck array, copy to player hand, remove from deck.
         var card = deck.CardsInDeck.Last();
 
-        // Check if Ace should be 11 or 1
-        if (card.IsAce)
-        {
-            if ((player.Score + card.CardValue) > MAX_SCORE)
-            {
-                card.CardValue = 1;
-            }
-        }
         player.AddCardToHand(card);
         deck.RemoveTopCard();
-        Console.WriteLine($"{card} dealt to {player.Name}");
+
+        // If it's the Dealer's first card being dealt (i.e. the Hole card)
+        if (player.Hand.IndexOf(card) == 0 && player.GetType() == typeof(Dealer))
+        {
+            Console.WriteLine($"Hole card dealt to {player.Name}");
+        }
+        else
+        {
+            Console.WriteLine($"{card} dealt to {player.Name}");
+        }
     }
 
-    public bool EvaluateScores(bool bothStand)
+    public bool EvaluateScores(bool bothStand = false)
     {
         bool isDraw = false;
         bool playerWins = false;
