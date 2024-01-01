@@ -48,19 +48,30 @@ internal class Game
         {
             if (Players[0].Score > Players[1].Score)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
+
                 Console.WriteLine($"{Players[0].Name} wins. (High score)");
+                Console.ForegroundColor = ConsoleColor.White;
+
                 playerWins = true;
                 return playerWins;
             }
 
             if (Players[0].Score < Players[1].Score)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
+
                 Console.WriteLine($"{Players[1].Name} wins. (High score)");
+                Console.ForegroundColor = ConsoleColor.White;
+
                 dealerWins = true;
                 return dealerWins;
             }
 
+            Console.ForegroundColor = ConsoleColor.Green;
+
             Console.WriteLine("Game is a draw (Equal score)");
+            Console.ForegroundColor = ConsoleColor.White;
 
 
             isDraw = true;
@@ -70,7 +81,10 @@ internal class Game
         // If player and dealer have 21
         if (Players[0].Score == Players[1].Score && Players[0].Score == MAX_SCORE)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Game is a draw (Both players scored 21)");
+            Console.ForegroundColor = ConsoleColor.White;
+
             isDraw = true;
             return isDraw;
         }
@@ -78,7 +92,11 @@ internal class Game
 
         if (Players[0].Score == MAX_SCORE && Players[0].Score > Players[1].Score)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+
             Console.WriteLine($"{Players[0].Name} wins. (Scored 21)");
+            Console.ForegroundColor = ConsoleColor.White;
+
             playerWins = true;
             return playerWins;
         }
@@ -86,7 +104,11 @@ internal class Game
 
         if (Players[1].Score == MAX_SCORE && Players[1].Score > Players[0].Score)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+
             Console.WriteLine($"{Players[1].Name} wins. (Scored 21)");
+            Console.ForegroundColor = ConsoleColor.White;
+
             dealerWins = true;
             return dealerWins;
         }
@@ -94,7 +116,11 @@ internal class Game
 
         if (Players[0].Score > MAX_SCORE && Players[1].Score <= MAX_SCORE)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+
             Console.WriteLine($"{Players[1].Name} wins. ({Players[0].Name} bust)");
+            Console.ForegroundColor = ConsoleColor.White;
+
             dealerWins = true;
             return dealerWins;
         }
@@ -102,7 +128,11 @@ internal class Game
 
         if (Players[1].Score > MAX_SCORE && Players[0].Score <= MAX_SCORE)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+
             Console.WriteLine($"{Players[0].Name} wins. ({Players[1].Name} bust)");
+            Console.ForegroundColor = ConsoleColor.White;
+
             playerWins = true;
             return playerWins;
         }
@@ -110,11 +140,16 @@ internal class Game
 
         if (Players[0].Score > MAX_SCORE && Players[1].Score > MAX_SCORE)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+
             Console.WriteLine("Game is a draw (Both players bust)");
+            Console.ForegroundColor = ConsoleColor.White;
+
             isDraw = true;
             return isDraw;
         }
 
         return false;
     }
+
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,17 +48,19 @@ namespace Blackjack
             {
                 Console.Write("Do you want to hit or stand? (h/s): ");
                 string choice = Console.ReadLine();
-                Console.Clear();
-                if (choice.Equals("h"))
+                if (choice.ToLower().Equals("h"))
                 {
+                Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine($"{Name} hits.");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine();
                     return true;
                 }
-                else if (choice.Equals("s"))
+                else if (choice.ToLower().Equals("s"))
                 {
+                    Console.Clear();
+
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine($"{Name} stands.");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -72,11 +75,15 @@ namespace Blackjack
         {
             if (isInitialRound && this.GetType() == typeof(Dealer))
             {
+                Console.WriteLine($"----- {Name}'s HAND -----");
                 Console.WriteLine($"{Name}'s hand:\n\tHole card\n\t{Hand[1]}\n\tScore: {Hand[1].CardValue} + ?");
+                Console.WriteLine();
             }
             else
             {
+                Console.WriteLine($"----- {Name}'s HAND -----");
                 Console.WriteLine($"{Name}'s hand:\n\t{String.Join("\n\t", Hand)}\n\tScore: {Score}");
+                Console.WriteLine();
             }
         }
     }

@@ -29,26 +29,9 @@ using Blackjack;
 
 static void Main()
 {
-    // Clear console 
-    Console.Clear();
+    (Player user, Dealer dealer, Deck deck, Game game) = InitialiseGame();
 
-    // Initialise players, game, deck
-    Player user = new Player("Carl");
-    Dealer dealer = new Dealer();
-    Game game = new Game([user, dealer]);
-    Deck deck = new Deck();
-
-
-    Console.WriteLine("----- DEALING HANDS -----");
-    // Deal two cards to each player in order
-    for (int i = 0; i < 2; i++)
-    {
-        foreach (Player p in game.Players)
-        {
-            game.Deal(deck, p);
-        }
-    }
-    Console.WriteLine();
+    DealInitialHands(game, deck);
 
     // Check if either player is bust or 21
     if (game.EvaluateScores())
@@ -71,76 +54,13 @@ static void Main()
     bool dealerStands = false;
     bool gameHasWinner = false;
 
-    while (game.EvaluateScores() == false)
+    playerStands = playOutPlayerTurn(game, deck, user);
+
+    if (!game.EvaluateScores())
     {
-        // If player has not already chosen to stand
-        if (!playerStands)
-        {
-            // While player chooses to hit, keep looping
-            if (user.HitOrStand() && game.EvaluateScores() == false)
-            {
-                Console.WriteLine("----- DEALING -----");
-                game.Deal(deck, user);
-                Console.WriteLine();
-                Console.WriteLine($"----- {user.Name}'s HAND -----");
-                user.PrintPlayerHand();
-                Console.WriteLine();
-                Console.WriteLine($"----- {dealer.Name}'s HAND -----");
-                dealer.PrintPlayerHand(true);
-                Console.WriteLine();
-            }
-            else
-            {
-                playerStands = true;
-                game.EvaluateScores();
-                break;
-            }
-        }
-        // Check if there's a winner
-        if (game.EvaluateScores())
-        {
-            gameHasWinner = true;
-            break;
-        }
+        dealerStands = playOutPlayerTurn(game, deck, dealer);
     }
 
-    if (gameHasWinner == false)
-    {
-
-
-        while (game.EvaluateScores() == false)
-        {
-            // If player has not already chosen to stand
-            if (!dealerStands)
-            {
-                // Hit returns true. If true, deal card.
-                if (dealer.HitOrStand() && game.EvaluateScores() == false)
-                {
-                    Console.WriteLine("----- DEALING -----");
-                    game.Deal(deck, dealer);
-                    Console.WriteLine();
-                    Console.WriteLine($"----- {user.Name}'s HAND -----");
-                    user.PrintPlayerHand();
-                    Console.WriteLine();
-                    Console.WriteLine($"----- {dealer.Name}'s HAND -----");
-                    dealer.PrintPlayerHand();
-                    Console.WriteLine();
-                }
-                else
-                {
-                    dealerStands = true;
-                    game.EvaluateScores();
-                    break;
-                }
-            }
-
-            // Check if there's a winner
-            if (game.EvaluateScores())
-            {
-                break;
-            }
-        }
-    }
 
     // If both dealer and player stand
     if (playerStands == true && dealerStands == true)
@@ -152,18 +72,22 @@ static void Main()
         // Check if there's a winner with true argument to check endgame scores
         game.EvaluateScores(true);
 
-        Console.WriteLine("--------- END OF GAME ----------");
-        Console.WriteLine();
-
         // Restart game
         PlayAgainPrompt();
     }
+
     PlayAgainPrompt();
 }
 
 static void PlayAgainPrompt()
 {
-    Console.WriteLine("Do you want to play again? (y/n): ");
+    Console.WriteLine();
+    Console.BackgroundColor = ConsoleColor.DarkRed;
+    Console.WriteLine("--------- END OF GAME ----------");
+    Console.BackgroundColor = ConsoleColor.Black;
+
+    Console.WriteLine();
+    Console.Write("Do you want to play again? (y/n): ");
     string choice;
     do
     {
@@ -181,6 +105,64 @@ static void PlayAgainPrompt()
             break;
     }
 
+}
+
+static (Player, Dealer, Deck, Game) InitialiseGame()
+{
+    // Clear console 
+    Console.Clear();
+
+    // Initialise players, game, deck
+    Player user = new Player("Carl");
+    Dealer dealer = new Dealer();
+    Deck deck = new Deck();
+    Game game = new Game([user, dealer]);
+    return (user, dealer, deck, game);
+}
+
+
+static void DealInitialHands(Game game, Deck deck)
+{
+    Console.WriteLine("----- DEALING HANDS -----");
+
+    // Deal two cards to each player in alternating sequence
+    for (int i = 0; i < 2; i++)
+    {
+        foreach (Player p in game.Players)
+        {
+            game.Deal(deck, p);
+        }
+    }
+
+    Console.WriteLine();
+}
+
+
+static bool playOutPlayerTurn(Game game, Deck deck, Player player, bool playerStands = false)
+{
+    while (game.EvaluateScores() == false)
+    {
+        if (!playerStands)
+        {
+            // While player chooses to hit, keep looping
+            if (player.HitOrStand() && game.EvaluateScores() == false)
+            {
+                Console.WriteLine("----- DEALING -----");
+                game.Deal(deck, player);
+                Console.WriteLine();
+                game.Players[0].PrintPlayerHand();
+                Console.WriteLine();
+                game.Players[1].PrintPlayerHand();
+            }
+            else
+            {
+                playerStands = true;
+                game.EvaluateScores();
+                break;
+            }
+        }
+    }
+    return playerStands;
 }
 
 Main();
