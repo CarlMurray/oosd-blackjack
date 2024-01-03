@@ -2,7 +2,7 @@ namespace Blackjack;
 
 public class Card
 {
-    // CONSTRUCTOR
+    // Constructor
     public Card(int suit, int rank)
     {
         Suit = (CardSuit)suit;
@@ -25,11 +25,10 @@ public class Card
         }
     }
 
-    // PROPERTIES
     public CardSuit Suit { get; set; }
     public CardRank Rank { get; set; }
 
-
+    // Properties used in constructor to determine CardValue
     public bool IsAce { get; set; } = false;
     public int CardValue { get; set; }
     public bool IsFaceCard { get; set; } = false;

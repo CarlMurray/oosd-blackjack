@@ -1,34 +1,17 @@
 ﻿/*
- * README
- *
- * Program emulates the game of Blackjack.
- *
- * Game rules and logic implemented:
- *
- * Info:
- * - Ace is worth 11 or 1 - value is automatically set throughout the game to whichever is in favour of the user.
- * - Ace value can change throughout the game i.e. Ace may initially be 11, but if the user hits the Ace may change to 1 if required.
- *
- * Game flow:
- * - Create 2 players - user and dealer. Game is restricted to two players only.
- * - Create a standard deck of 52 cards and shuffle before play.
- * - When game starts, deal two (2) cards to each player in alternating sequence, starting with user.
- * - Dealer's first card is the 'hole card' i.e. it's value is hidden.
- * - Evaluate scores to see if there is a winner after initial deal - if so, end game.
- * - Prompt user for decision - hit (deal another card) or stand (keep current hand and end turn).
- * - Evaluate scores to check if user is bust or hits 21 - if so, end game.
- * - Dealer's turn:
- * - Reveal hole card and evaluate score.
- * - Dealer must hit until score of >= 17 is reached, then stand.
- * - Evaluate scores to check for winner.
- * - Prompt user to play again.
- *
+ * ----------------------------------------
+ * ----------------------------------------
+ * See README.MD for detailed documentation.
+ * ----------------------------------------
+ * ----------------------------------------
  */
 
 using Blackjack;
 
+// Loops game until player chooses not to play again
 do
 {
+    // Init game
     (Player user, Dealer dealer, Deck deck, Game game) = InitialiseGame();
     DealInitialHands(game, deck);
 
@@ -74,6 +57,8 @@ do
     }
 
 } while (PlayAgainPrompt());
+
+// Method prompts player to play again at game end
 static bool PlayAgainPrompt()
 {
     Console.WriteLine();
@@ -83,6 +68,7 @@ static bool PlayAgainPrompt()
 
     Console.WriteLine();
     string choice;
+    // Prompt user for valid input
     do
     {
         Console.Write("Do you want to play again? (y/n): ");
@@ -102,10 +88,10 @@ static bool PlayAgainPrompt()
 
     return false;
 }
-
+// Method for initialising a game with players and deck
 static (Player, Dealer, Deck, Game) InitialiseGame()
 {
-    // Clear console 
+    // Clear console (when there's a previous game still visible)
     Console.Clear();
 
     // Initialise players, game, deck
@@ -116,6 +102,7 @@ static (Player, Dealer, Deck, Game) InitialiseGame()
     return (user, dealer, deck, game);
 }
 
+// Method for dealing first two cards to each player
 static void DealInitialHands(Game game, Deck deck)
 {
     Console.WriteLine("----- DEALING HANDS -----");
@@ -132,15 +119,19 @@ static void DealInitialHands(Game game, Deck deck)
     Console.WriteLine();
 }
 
+// Method for handling logic for a player's turn
 static bool playOutPlayerTurn(Game game, Deck deck, Player player, bool playerStands = false)
 {
+    // While there is no winner
     while (game.EvaluateScores() == false)
     {
+        // If the player has not chosen to stand
         if (!playerStands)
         {
             // While player chooses to hit, keep looping
             if (player.HitOrStand() && game.EvaluateScores() == false)
             {
+                // Print dealt card and current hand
                 Console.WriteLine("----- DEALING -----");
                 game.Deal(deck, player);
                 Console.WriteLine();
@@ -150,6 +141,7 @@ static bool playOutPlayerTurn(Game game, Deck deck, Player player, bool playerSt
             }
             else
             {
+                // Else if player stands, eval scores and exit loop
                 playerStands = true;
                 game.EvaluateScores();
                 break;
