@@ -46,11 +46,45 @@ internal class Game
      * Parameters:
      *      bool bothStand: Passed when both players choose to stand so scores can be compared. Default is false.
      */
-    public bool EvaluateScores(bool bothStand = false)
+    public bool EvaluateScores(bool bothStand = false, bool isInitialRound = false)
     {
         bool isDraw = false;
         bool playerWins = false;
         bool dealerWins = false;
+
+        // If it's initial round (user's turn), don't check the dealers score
+        if (isInitialRound)
+        {
+            // If player busts
+            if (Players[0].Score > MAX_SCORE)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"{Players[1].Name} wins. ({Players[0].Name} bust)");
+                Console.ForegroundColor = ConsoleColor.White;
+                dealerWins = true;
+                return dealerWins;
+            }
+            // If player and dealer hit 21
+            else if (Players[0].Score == MAX_SCORE && Players[1].Score == MAX_SCORE)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Game is a draw (Both players scored 21)");
+                Console.ForegroundColor = ConsoleColor.White;
+                isDraw = true;
+                return isDraw;
+            }
+            // If only player hits 21
+            else if (Players[0].Score == MAX_SCORE)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"{Players[0].Name} wins. (Scored 21)");
+                Console.ForegroundColor = ConsoleColor.White;
+                playerWins = true;
+                return playerWins;
+            }
+
+            return false;
+        }
 
         // If both players stand, compare scores to check winner
         if (bothStand)

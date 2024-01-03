@@ -16,7 +16,7 @@ do
     DealInitialHands(game, deck);
 
     // Check if either player is bust or 21
-    if (game.EvaluateScores())
+    if (game.EvaluateScores(isInitialRound:true))
     {
         Console.WriteLine("Starting new game...");
         continue;
@@ -27,7 +27,7 @@ do
     // Print each player's hand and score
     foreach (Player p in game.Players)
     {
-        p.PrintPlayerHand(isInitialRound);
+        p.PrintPlayerHand(isInitialRound:true);
     }
     Console.WriteLine();
 
@@ -137,7 +137,11 @@ static bool playOutPlayerTurn(Game game, Deck deck, Player player, bool playerSt
                 Console.WriteLine();
                 game.Players[0].PrintPlayerHand();
                 Console.WriteLine();
-                game.Players[1].PrintPlayerHand();
+                if (player.GetType() != typeof(Dealer))
+                {
+                    game.Players[1].PrintPlayerHand(true);
+                }
+                else game.Players[1].PrintPlayerHand();
             }
             else
             {
