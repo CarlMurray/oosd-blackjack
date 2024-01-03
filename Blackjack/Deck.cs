@@ -8,7 +8,7 @@ public class Deck
     private const int MAX_CARD_VALUE = 14; // CardRank enum ends at 14 (Ace)
 
     // Array to store cards in the deck
-    public Card[] CardsInDeck = new Card[NUMBER_OF_CARDS];
+    internal Card[] CardsInDeck = new Card[NUMBER_OF_CARDS];
 
     // Constructor
     public Deck()

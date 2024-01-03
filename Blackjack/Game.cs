@@ -6,7 +6,7 @@ internal class Game
     private const int MAX_SCORE = 21;
 
     // Stores players in a game
-    public Player[] Players = new Player[2];
+    internal Player[] Players = new Player[2];
 
     public Game(Player[] players)
     {

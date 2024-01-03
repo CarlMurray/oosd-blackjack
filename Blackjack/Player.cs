@@ -3,7 +3,7 @@
     internal class Player
     {
         public string Name { get; set; }
-        public List<Card> Hand = [];
+        internal List<Card> Hand = [];
         public int Score { get; set; }
 
         public Player(string name)
