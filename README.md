@@ -117,3 +117,6 @@ Loops are used throughout the project, including `for`, `foreach`, `while` and `
 
 ## Enumeration
 - `enum`s are used in the `Card` class and used in conjunction with an `if` statement to determine the score value for each card in the deck. 
+
+# Extra Feature
+- The program correctly handles the Dealer's "Hole card" in line with Blackjack rules, by dealing this card face down initially to add an element of uncertainty to the game, and then revealing the card when it's the Dealer's turn.
